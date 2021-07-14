@@ -1,0 +1,50 @@
+﻿@model IEnumerable<WebApplication2.Models.Product>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>products</h2>
+
+
+
+
+@using (Html.BeginForm("Index", "Product", FormMethod.Post))
+
+{
+
+    <div class="form-group">
+
+        @Html.TextBox("search")
+        <input type="submit" value="submit" />
+        <input type="button" onclick="location.href='@Url.Action("Create", "Product")'" value="Add Product" class="btn btn-default" />
+
+    </div>
+    <div>
+
+        @foreach (var c in Model)
+        {<div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+                <ul>
+                    <li> @Html.DisplayFor(modelc => c.name) </li>
+
+                    <li>
+                        <img src="~/Uploads/@Html.DisplayFor(modelc => c.image)"
+                             class="thumbnail"
+                             style="width:150px; height:150px;" />
+
+                    </li>
+
+                    <li>
+                        @Html.ActionLink("Details", "Details", new { id = c.id })
+
+                    </li>
+                    <li>
+                        <input type="button" onclick="location.href='@Url.Action("AddToCart","Cart",new { id=c.id})'" value="Add To Cart" class="btn btn-default" />
+                    </li>
+                </ul>
+            </div>
+        }
+
+    </div>
+}

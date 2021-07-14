@@ -1,0 +1,70 @@
+﻿@using WebApplication2.Models
+@model WebApplication2.viewmodel.CategoryProduct
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Product</h2>
+
+@using (Html.BeginForm("Edit", "Product", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+{
+    @Html.HiddenFor(c => c.Product.id)
+    <!-- dl horizontal is from resposive design in bootstrap-->
+    <div class="form-horizontal">
+        <div class="form-group">
+
+            @Html.LabelFor(x => x.Product.name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(x => x.Product.name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Product.name)
+
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(x => x.Product.price, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(x => x.Product.price, new { @class = "form-control", Type = "number" })
+                @Html.ValidationMessageFor(x => x.Product.price)
+
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(x => x.Product.image, htmlAttributes: new { @class = "control-label col-md-2" })
+
+
+
+
+            <div class="col-md-10">
+                <input type="file" name="Upload" } />
+
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(x => x.Product.description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(x => x.Product.description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Product.description)
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(x => x.Product.Category_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(x => x.Product.Category_id, new SelectList(Model.categories, "id", "name"), "Select Category", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Product.Category_id)
+            </div>
+        </div>
+
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+
+}

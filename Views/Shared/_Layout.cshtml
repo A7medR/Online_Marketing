@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+             
+            
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+
+                    <li>
+
+
+                    <li>
+                        <!-- Trigger/Open The Modal -->
+                        <button id="myBtn">Open Cart</button>
+                        <!-- The Modal -->
+                        <div id="myModal" class="modal" style="width:500px;margin:auto">
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="h">Cart List</h2>
+                                    <div><span class="close">&times;</span></div>
+                                </div>
+                                <div class="modal-body">
+
+                                    @{
+                                        Html.RenderAction("viewCart", "cart");
+                                    }
+
+                                </div>
+                                <div class="modal-footer">
+                                    <!--class="btn btn-default"data-dismiss="modal"-->
+                                    <button type="button" class="btn btn-default close" id="btn2">close</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script>// Get the modal
+                                            var modal = document.getElementById("myModal");
+                                            // Get the button that opens the modal
+                                            var btn = document.getElementById("myBtn");
+                                            // Get the <span> element that closes the modal
+                                            var span = document.getElementsByClassName("close")[0];
+                                            //
+                                            // Get the <span> element that closes the modal
+                                            var btn2 = document.getElementsByClassName("close")[1];
+                                            // When the user clicks the button, open the modal
+                                            btn.onclick = function () {
+                                                modal.style.display = "block";
+                                            }
+
+                                            // When the user clicks on <span> (x), close the modal
+                                            span.onclick = function () {
+                                                modal.style.display = "none";
+                                            }
+                                            //
+                                            btn2.onclick = function () {
+                                                modal.style.display = "none";
+                                            }
+
+
+                                            // When the user clicks anywhere outside of the modal, close it
+                                            window.onclick = function (event) {
+                                                if (event.target == modal) {
+                                                    modal.style.display = "none";
+                                                }
+                                            }</script>
+                    </li>
+                   
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+    </div>
+   
+        <footer style="display:inline">
+            <p style="text-emphasis-color:black;background-color:gray;height:300px;padding-left:60px">
+                we are so glad to use this application  
+            </p>
+
+        </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

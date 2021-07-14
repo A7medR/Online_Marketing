@@ -1,0 +1,45 @@
+﻿
+
+@model IEnumerable<WebApplication2.Models.Cart>
+<form>
+    <div class="form-group">
+
+
+
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var x in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelx => x.Product.name)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelx => x.Product.price)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelx => x.PassedDate)
+                        </td>
+
+                        <td>
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("RemoveLine","Cart",new {id=x.Product.id})'">Remove</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+    </div>
+</form>

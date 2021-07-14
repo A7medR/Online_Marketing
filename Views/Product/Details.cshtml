@@ -1,0 +1,69 @@
+﻿@using WebApplication2.Models
+@model WebApplication2.Models.Product
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+<!-- dl horizontal is from resposive design in bootstrap-->
+<div class="dl-horizontal">
+    <h4>Product</h4>
+    <hr />
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(item => item.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(item => item.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(item => item.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(item => item.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(item => item.image)
+        </dt>
+
+        <dd>
+            <img src="~/Uploads/@Html.DisplayFor(item=>item.image)"
+                 class="thumbnail"
+                 style="width:500px; height:500px;" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(item => item.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(item => item.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(item => item.category.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(item => item.category.name)
+        </dd>
+
+
+
+
+
+
+    </dl>
+
+</div>
+<p>
+    <input type="button" onclick="location.href='@Url.Action("Edit", "Product" ,new { id=Model.id})'" value="Update" class="btn btn-default " />
+    <input type="button" onclick="location.href='@Url.Action("Delete", "Product",new { id=Model.id})'" value="Delete" class="btn btn-default " />
+
+    @Html.ActionLink("Back to List", "Index")
+</p>
